@@ -43,9 +43,10 @@
   padding-left: 4px;
 }
 
-.link-active{
+.header__links-list-item_no-bullit{
   list-style: none;
   padding: 0;
+  text-decoration: none;
 }
 
 
@@ -100,7 +101,6 @@
 .description{
   display: flex;
   max-width: 1005px;
-  min-height: 50px;
   justify-content: space-between;
   align-items: center;
   margin-left: 45px;
@@ -124,10 +124,11 @@
   font-size: 22px;
   font-weight: 500;
   z-index: 3;
-  padding: 12px 32px;
-  letter-spacing: 0.5;
-  word-spacing: 0.5;
+  padding: 12px 28px;
+  letter-spacing: 0.5px;
+  word-spacing: 0.5px;
   text-transform: uppercase;
+  border: 1px solid #fff;
 }
 
 /* Секция с лотами */
@@ -137,14 +138,14 @@
   flex-direction: column;
   min-width: 1100px;
   margin-top: 180px;
-  padding: 0 22px;
+  padding: 0 24px;
   color: #fff;
 }
 
 .lots__heading{
   font-size: 40px;
   color: #000;
-  margin: 0 0 4px 40px;
+  margin: 0 0 24px 40px;
   text-transform: uppercase;
 }
 
@@ -161,7 +162,7 @@
 
 .lots__card-list-item{
   min-width: 334px;
-  max-height: 596px;
+  min-height: 596px;
 
 }
 
@@ -178,29 +179,18 @@
 
 .card_type_film{
   background-image: url(../images/photo.png);
-  background-position: center;
-  background-size: cover;
-  min-width: 334px;
-  min-height: 596px;
 }
 
 /* Карточка — тип книга */
 
 .card_type_book{
-  background-image: url(../images/photo2.jpg);
-  background-position: center;
-  background-size: cover;
-  min-width: 334px;
+  background-image: url(../images/photo2.jpg); 
 }
 
 /* Карточка — тип картина */
 
 .card_type_picture{
   background-image: url(../images/photo3.png);
-  background-position: center;
-  background-size: cover;
-  min-width: 334px;
-  min-height: 596px;
 }
 
 
@@ -210,6 +200,7 @@
   font-size: 20px;
   position: relative;
   color: #fff;
+  text-decoration: none;
 }
 
 /* Заголовок карточки */
@@ -232,51 +223,52 @@
   box-sizing: border-box;
   max-width: 334px;
   padding: 48px 40px;
+  background-position: center;
+  background-size: cover;
+  min-width: 334px;
+  min-height: 100%;
 }
 
 /* Ссылка "Посмотреть больше" */
 
 .lots__look-more-link{
-  margin: 50px 0 0 40px;
+  margin: 30px 0 0 40px;
   font-size: 20px;
 }
 
 /* Секция "О аукционе" */
 
+/* Секція "О нас" без видимого проміжку між блоками */
 .about {
   width: 1056px;
   display: grid;
-  grid-template-columns: 240px 72px 693px;
+  grid-template-columns: 240px 691px; 
+  gap: 72px; 
   padding-left: 47px;
-  box-sizing: border-box;
   margin-top: 155px;
 }
 
-/* Круглый контейнер с логотипом */
-
+/* Круглий контейнер з логотипом */
 .about__logo {
-
   width: 240px;
   height: 240px;
   border-radius: 50%;
 }
 
-/* Изображение логотипа */
-
+/* Зображення логотипа */
 .about__logo-image {
   width: auto;
   height: auto;
 }
 
-
+/* Блок з текстом */
 .about__column-text {
   display: flex;
   flex-direction: column;
   margin-top: 100px;
 }
 
-/* Заголовок секции */
-
+/* Заголовок */
 .about__title {
   font-size: 40px;
   font-weight: bold;
@@ -284,13 +276,12 @@
   text-transform: uppercase;
 }
 
-/* Параграфы с текстом */
-
+/* Параграфи */
 .about__text p {
   font-size: 20px;
   margin-bottom: 25px;
   line-height: 1.2;
-  color: black
+  color: black;
 }
 
 /* Подвал сайта */
@@ -298,7 +289,6 @@
 .footer{
   display: grid;
   grid-template-columns: 1fr min-content 1fr;
-  min-height: 180px;
   padding: 0 45px;
   gap: 170px;
   margin-top: 152px;
