@@ -163,10 +163,10 @@
   right: 30px; /* Отступ справа */
   color: var(--accent-red); /* Цвет текста из переменной */
   font-size: 18px; /* Размер шрифта */
-  display: flex; /* Включаем Flexbox для выравнивания */
+  display: var(--rec-display, flex); /* Включаем Flexbox для выравнивания */
   align-items: center; /* Выравнивание по центру по вертикали */
   gap: 8px; /* Промежуток между текстом и точкой */
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.3); /* Тень для текста */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3); /* Тень для текста */
   z-index: 10; /* Поверх остальных элементов */
   font-style: "Regular"; /* Стиль шрифта */
 }
