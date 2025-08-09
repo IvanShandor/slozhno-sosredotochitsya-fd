@@ -1,1 +1,2 @@
-https://github.com/IvanShandor/ono-tebe-nado-fd
+https://github.com/IvanShandor/slozhno-sosredotochitsya-fd.git
+
