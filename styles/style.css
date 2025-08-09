@@ -1,342 +1,829 @@
-/* Основна секція для центрування і фіксованої ширини контенту */
-.content-section{
-  box-sizing: border-box;
-  width: 1100px;
-  margin: 0 auto;
+/* Общие стили для всей страницы */
+.page {
+    /* Максимальная ширина контейнера страницы, чтобы контент не растягивался слишком сильно на больших экранах */
+    max-width: 1024px;
+    /* Центрирование контейнера страницы по горизонтали */
+    margin: 0 auto;
 }
 
-/* Шапка сайту, розділена на 3 частини: меню, логотип, адрес */
-
-.header{
-  display: grid;
-  grid-template-columns: 1fr min-content 1fr;
-  align-items: center;
-  padding: 92px 45px 94px 48px;
+/* Стили для секций с декоративными рамками */
+.decorated-zone {
+    /* Относительное позиционирование для дочерних псевдоэлементов */
+    position: relative;
 }
 
-/* Список посилань у хедері */
-
-.header__links-list{
-  display: flex;
-  gap: 30px;
+/* Псевдоэлементы для создания декоративных уголков */
+.decorated-zone::before,
+.decorated-zone::after {
+    /* Обязательное свойство для псевдоэлементов */
+    content: '';
+    /* Абсолютное позиционирование относительно .decorated-zone */
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    /* Цвет рамки из переменной */
+    border-color: var(--decorated-zone-color);
+    border-style: solid;
 }
 
-/* Адрес з вирівнюванням вправо */
+/* Стили для нижнего левого уголка */
+.decorated-zone::before {
+    bottom: 20px;
+    left: 20px;
+    /* Рисуем только нижнюю и левую границы */
+    border-width: 0 0 2px 2px;
+}
 
-.address{
-  width: 240px;
-  justify-self: end;
-  font-style: normal;
-  line-height: 1.3;
-  margin-right: 5px;
-  margin-bottom: 5px;
-  text-decoration-thickness: 1px;          
+/* Стили для верхнего правого уголка */
+.decorated-zone::after {
+    top: 20px;
+    right: 20px;
+    /* Рисуем только верхнюю и правую границы */
+    border-width: 2px 2px 0 0;
+}
+
+/* Стили для шапки сайта */
+.header {
+    position: relative;
+    max-width: 100%;
+    min-height: var(--min-height);
+    background-color: var(--background-color);
+    background-image: var(--background-image);
+    background-size: cover;             /* зберігає пропорції, заповнює всю область */
+    background-position: center center; /* центр по X та Y */
+    background-repeat: no-repeat;       /* не повторювати */
+    background-attachment: scroll;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    margin: 0 auto;
+}
+
+/* Стили для меню переключения тем */
+.header__theme-menu {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Стили для списка тем */
+.header__theme-menu-list {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    margin: 0 0 30px 0;
+    padding: 0;
+    font-family: "IBM Plex Mono", sans-serif;
+    font-weight: 100;
+    font-size: 18px;
+    line-height: 18px;
+    text-align: center;
+}
+
+/* Стили для кнопок переключения тем */
+.header__theme-menu-button {
+    background: none;
+    border: none;
+    color: var(--button-text-color);
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-size: 16px;
+    padding: 0;
+    width: 70px;
+    text-align: center;
+}
+
+/* Стиль для активной кнопки темы */
+.header__theme-menu-button_active {
+    /* Добавляем рамку для выделения */
+    border: 1px solid var(--button-text-color);
+}
+
+/* Стили для кнопок при наведении */
+.header__theme-menu-button:hover {
+    outline: 1px solid var(--button-text-color); /* Добавляем контур при наведении */
+    border: none; /* Убираем рамку, чтобы избежать двойных границ */
+}
+
+/* Стили для кнопок при фокусе */
+.header__theme-menu-button:focus {
+    outline: none; /* Убираем стандартный контур */
+    border-bottom: 1px solid var(--button-text-color); /* Добавляем нижнюю границу */
+}
+
+/* Стили для основного контента в шапке */
+.header__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Стили для главного заголовка в шапке */
+.header__title {
+    color: var(--accent-pink);
+    font-family: var(--font-primary);
+    /* Адаптивный размер шрифта: от 48px до 157px в зависимости от ширины экрана */
+    font-size: clamp(48px, 15vw, 157px);
+    font-weight: bold;
+    line-height: 83%;
+    text-shadow: 4px 4px 0 var(--header-title-shadow);
+    text-transform: lowercase;
+    align-self: flex-start;
+    margin-top: auto;
+    margin-bottom: 100px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* Стили для описания в шапке */
+.header__description {
+    align-self: flex-end;
+    background-color: var(--header-title-shadow);
+    color: var(--text-color);
+    font-family: var(--font-primary);
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 23.4px;
+    max-width: 491px;
+    padding: 0;
+    text-align: left;
+    margin-bottom: 115px;
+    margin-right: 20px;
 }
 
 
-/* Отдельный стиль для ссылок с подчёркиванием */
 
-.header__links-list-item{
-  list-style: circle;
-  margin-bottom: 5px;
-  list-style-position: outside;
-  padding-left: 4px;
+/* ========================================================================== */
+/* Декоративный элемент "REC" в шапке */
+/* ========================================================================== */
+
+.header__rec {
+  position: absolute; /* Абсолютное позиционирование относительно шапки */
+  top: 22px; /* Отступ сверху */
+  right: 30px; /* Отступ справа */
+  color: var(--accent-red); /* Цвет текста из переменной */
+  font-size: 18px; /* Размер шрифта */
+  display: flex; /* Включаем Flexbox для выравнивания */
+  align-items: center; /* Выравнивание по центру по вертикали */
+  gap: 8px; /* Промежуток между текстом и точкой */
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.3); /* Тень для текста */
+  z-index: 10; /* Поверх остальных элементов */
+  font-style: "Regular"; /* Стиль шрифта */
 }
 
-.header__links-list-item_no-bullit{
-  list-style: none;
-  padding: 0;
-  text-decoration: none;
+/* Стили для точки в элементе "REC" */
+.header__rec-dot {
+  width: 9px; /* Ширина точки */
+  height: 9px; /* Высота точки */
+  background-color: var(--accent-red); /* Цвет фона из переменной */
+  border-radius: 50%; /* Делаем элемент круглым */
+  box-shadow: 0 0 4px var(--accent-red); /* Тень для создания эффекта свечения */
+  flex-shrink: 0; /* Запрещаем элементу сжиматься */
 }
 
 
-/* Обложка сайта с фоном */
+/* Стили для основного контента страницы */
 
-.cover{
-  position: relative;
-  min-height: 757px;
-  min-width: 1100px;
-  background-image: url(../images/lotus-flower.png);
-  
+/* Общие стили для основного контента */
+.content {
+    background-color: var(--section-background);
+    color: var(--main-text-color);
+    font-family: var(--font-primary, 'Courier New', monospace);
 }
 
-.overlay{
-  background-position: center;
-  min-height: 100%;
-  min-width: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  position: absolute;
-  z-index: 0;
-  inset: 0;
+/* Стили для секции контента */
+.content__section {
+    display: grid;
+    /* Сетка из двух колонок: первая занимает 1 часть, вторая 2 части */
+    grid-template-columns: 1fr 2fr;
+    gap: 15px;
+    padding: 63px 20px;
 }
 
-/* Большой заголовок */
+/* Стили для заголовка секции */
+.content__title {
+    font-family: "IBM Plex Mono", sans-serif;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 17px;
+    line-height: 23.4px;
+    letter-spacing: 0.6px;
+    color: var(--content-section-title);
+    margin: 0;
+}
 
-.cover__title{
-  position: relative;
-  color: #fff;
+/* Обертка для подсекций */
+.content__subsections-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Стили для подсекции */
+.content__subsection {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Стили для заголовка подсекции */
+.subsection__title {
+    background-color: var(--title-decor);
+    color: var(--text-color);
+    font-family: "IBM Plex Mono", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23.4px;
+    letter-spacing: 0%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Стили для текста подсекции */
+.subsection__text {
+    font-family: "IBM Plex Mono", sans-serif;
+    font-style: "Regular";
+    font-size: 18px;
+    line-height: 23.4px;
+    word-spacing: -1px;
+    letter-spacing: 0%;
+    color: var(--main-text-color);
+    padding: 0;
+    margin: 0;
+}
+
+/* Стили для акцентного текста (ссылок) */
+.text-accent {
+  color: var(--main-text-color); /* Розовый цвет для акцентного текста */
+  text-decoration: none; /* Убираем стандартное подчеркивание */
+   text-shadow: 1px 1px 0 var(--header-title-shadow);
+}
+
+/* Стили для ссылок при наведении и фокусе */
+.text-accent:hover {
+  text-decoration: underline; /* Добавляем подчеркивание при наведении */
+}
+
+.text-accent:focus {
+  outline: 1px solid var(--main-text-color); /* Добавляем рамку при фокусе */
+}
+
+/* ========================================================================== */
+/* Стили для секции "Что снижает концентрацию внимания?" */
+/* ========================================================================== */
+
+.attention-section {
+    background-color: var(--section-background); /* Цвет фона секции */
+    padding: 8px 20px 10px 20px; /* Внутренние отступы */
+    font-family: var(--font-primary, 'IBM Plex mono', monospace); /* Основной шрифт */
+}
+
+/* Стили для заголовка секции "Внимание" */
+.attention-section__title {
+  display: block;
+  max-width: 315px;
+  color: var(--content-section-title);
+  font-size: 18px;
   font-weight: 700;
-  font-size: 100px;
-  z-index: 1;
-  padding: 154px 20px 50px 48px;
-  text-transform: uppercase;
-}
-.aligned-text{
-  display: flex;
-  flex-direction: column;
-  gap: 360px;
-  letter-spacing: 30px;
-  line-height: 135px;
+  line-height: 23.4px;
+  margin-bottom: 20px;
+  text-align: left;
 }
 
-.aligned-text_center{
-  text-align: center;
-}
-.aligned-text_right{
-  text-align: right;
-}
-
-/* Блок с текстом и кнопкой под заголовком */
-
-.description{
-  display: flex;
-  max-width: 1005px;
-  justify-content: space-between;
-  align-items: center;
-  margin-left: 45px;
-  margin-top: 45px;
-}
-.cover__description-text{
-  font-size: 22px;
-  color: #fff;
-  word-spacing: 18px;
-  text-transform: uppercase;
-  margin-left: 5px;
-  z-index: 1;
-}
-
-/* Кнопка "Сделать ставку" */
-
-.bet-button{
-  font-family: Raleway, sans-serif; 
-  background: none;
-  color: #fff;
-  font-size: 22px;
-  font-weight: 500;
-  z-index: 3;
-  padding: 12px 28px;
-  letter-spacing: 0.5px;
-  word-spacing: 0.5px;
-  text-transform: uppercase;
-  border: 1px solid #fff;
-}
-
-/* Секция с лотами */
-
-.lots{
-  display: flex;
-  flex-direction: column;
-  min-width: 1100px;
-  margin-top: 175px;
-  padding: 0 24px;
-  color: #fff;
-}
-
-.lots__heading{
-  font-size: 40px;
-  color: #000;
-  margin: 5px 0 0 40px;
-  text-transform: uppercase;
-  padding-bottom: 25px;
-}
-
-.lots__card-list{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 25px;
-  
-}
-
-.card-link{
-  text-decoration: none;
-}
-
-.lots__card-list-item{
-  min-width: 334px;
-  min-height: 596px;
-
-}
-
-.card{
+/* Стили для колонок в секции "Внимание" */
+.attention-section__columns {
   display: flex;
   justify-content: space-between;
-  position: relative;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: 1; 
+  gap: 20px;
 }
 
-/* Карточка — тип фильм */
-
-.card_type_film{
-  background-image: url(../images/photo.png);
-}
-
-/* Карточка — тип книга */
-
-.card_type_book{
-  background-image: url(../images/photo2.jpg); 
-}
-
-/* Карточка — тип картина */
-
-.card_type_picture{
-  background-image: url(../images/photo3.png);
-}
-
-
-/* Текст на карточке */
-
-.card__text{
-  font-size: 20px;
-  position: relative;
-  color: #fff;
-  text-decoration: none;
-  z-index: 1 ;
-}
-
-/* Заголовок карточки */
-
-.card__title{
-  color: #fff;
-  font-size: 22px;
-  position: relative;
-  text-transform: uppercase;
-  text-decoration: underline;
-  text-decoration-color: #fff;
-  z-index: 1;
-}
-
-/* Внутренний контейнер карточки */
-
-.card__conteiner{
+/* Отдельная колонка */
+.attention-section__column {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  box-sizing: border-box;
-  max-width: 334px;
-  padding: 48px 40px;
-  background-position: center;
-  background-size: cover;
-  min-width: 334px;
-  min-height: 100%;
 }
 
-/* Ссылка "Посмотреть больше" */
-
-.lots__look-more-link{
-  margin: 30px 0 0 40px;
-  font-size: 20px;
+/* Стили для заголовка колонки */
+.column__title {
+  background-color: var(--title-decor);
+  color: var(--text-color);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 23.4px;
+  padding: 0;
+  text-align: left;
+  margin: 0;
 }
 
-/* Секция "О аукционе" */
+/* Стили для текста в колонке */
+.column__text {
+  color: var(--main-text-color);
+  font-size: 18px;
+  line-height: 23.4px;
+  padding-top: 10px;
+  margin: 0;
+  text-align: left;
+}
+/* Дата додавання коментарів: 2025-08-07 */
 
-/* Секція "О нас" без видимого проміжку між блоками */
-.about {
-  width: 1056px;
-  display: grid;
-  grid-template-columns: 240px 691px; 
-  gap: 72px; 
-  padding-left: 47px;
-  margin-top: 155px;
+
+/* Стили для секции концентрации */
+
+.concentration-section {
+    background-color: var(--section-background);
+    color: var(--main-text-color);
+    padding: 70px 20px 55px 20px;
+    font-family: var(--font-primary, 'IBM Plex Mono', monospace);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
 }
 
-/* Круглий контейнер з логотипом */
-.about__logo {
-  width: 240px;
-  height: 240px;
-  border-radius: 50%;
+
+
+.concentration-section__main-title {
+    color: var(--content-section-title);
+    font-size: 18px;
+    font-weight: bold;
+    max-width: 315px;
+    margin: 0;
 }
 
-/* Зображення логотипа */
-.about__logo-image {
-  width: auto;
-  height: auto;
+.concentration-section__subtitle-wrapper {
+    /* рожевий фон */
+    padding: 0;                        /* внутрішній відступ */                   /* щоб розмір під контент */
+    max-width: 100%;                         /* обмеження ширини */
 }
 
-/* Блок з текстом */
-.about__column-text {
+.concentration-section__subtitle {
+    background-color: var(--title-decor);
+    color: var(--text-color);                /* чорний текст */
+    font-weight: bold;
+    font-size: 18px;
+    font-family: var(--font-primary, 'IBM Plex Mono', monospace);
+    margin: 0;
+    line-height: 1.2;
+    text-align: left;
+    max-width: 100%;
+}
+
+.concentration-section__advice-titles {
+  grid-column: 1 / 2;
   display: flex;
   flex-direction: column;
-  margin-top: 100px;
+  gap: 20px;
 }
 
-/* Заголовок */
-.about__title {
-  font-size: 40px;
+.concentration-section__advice-list {
+  grid-column: 2 / 3; /* Список советов во второй колонке */
+  display: flex;
+  flex-direction: column;
+
+}
+
+.advice-item__title {
+  background-color: var(--title-decor);
+  color: var(--text-color);
   font-weight: bold;
-  margin: 0 0 100px 0;
-  text-transform: uppercase;
+  font-size: 18px;
+  padding: 0;
+  margin: 0;
+  margin-top: 20px;
 }
 
-/* Параграфи */
-.about__text p {
-  font-size: 20px;
-  margin-bottom: 25px;
-  line-height: 1.2;
-  color: black;
+.advice-item__text {
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-size: 18px;
+  line-height: 1.3;
 }
 
-/* Подвал сайта */
 
-.footer{
+/* ========================================================================== */
+/* Стили для секции с галереей изображений */
+/* ========================================================================== */
+
+.gallery-section {
+    background-color: var(--section-background); /* Цвет фона секции */
+    padding: 0px 20px; /* Внутренние отступы */
+    font-family: var(--font-primary, 'IBM Plex Mono', monospace); /* Основной шрифт */
+}
+
+/* Стили для заголовка галереи */
+.gallery-section__title {
+  color: var(--text-color); /* Цвет текста */
+  background-color: var(--title-decor); /* Цвет фона */
+  font-size: 18px; /* Размер шрифта */
+  font-weight: bold; /* Жирное начертание */
+  margin-bottom: 20px; /* Отступ снизу */
+}
+
+/* Сетка для изображений в галерее */
+.gallery-section__images {
+  display: grid; /* Включаем Grid-раскладку */
+  grid-template-columns: repeat(6, 1fr); /* 6 колонок одинаковой ширины */
+  grid-template-rows: repeat(24, 20px); /* 25 строк высотой 20px */
+  gap: 25px; /* Промежутки между ячейками сетки */
+}
+
+/* Контейнер для строки изображений (для логической группировки) */
+.gallery-row {
+  display: contents; /* Позволяет дочерним элементам быть прямыми потомками грида */
+}
+
+/* Расположение первого изображения (Закат) */
+.gallery-row:nth-child(1) .gallery-image {
+  grid-column: 1 / 5; /* Занимает с 1 по 4 колонку */
+  grid-row: 1 / 7; /* Занимает с 1 по 7 строку */
+}
+
+/* Контейнер для среднего ряда изображений */
+.gallery-row--middle {
+  display: contents;
+}
+
+/* Расположение изображения кассеты */
+.gallery-row--middle .gallery-image:nth-child(1) {
+  grid-column: 1 / 3 ; /* Занимает с 1 по 2 колонку */
+  grid-row:  7 / 25; /* Занимает с 7 по 25 строку */
+}
+
+/* Расположение изображения книг */
+.gallery-row--middle .gallery-image:nth-child(2) {
+  grid-column: 3 / 5 ; /* Занимает с 3 по 4 колонку */
+  grid-row: 7 / 15; /* Занимает с 7 по 15 строку */
+}
+
+/* Расположение изображения мороженого */
+.gallery-row--middle .gallery-image:nth-child(3) {
+  grid-column: 5 / 7; /* Занимает с 5 по 6 колонку */
+  grid-row: 1 / 15 ; /* Занимает с 1 по 15 строку */
+}
+
+/* Расположение третьего изображения (улица) */
+.gallery-row:nth-child(3) .gallery-image {
+  grid-column: 3 / 7; /* Занимает с 3 по 6 колонку */
+  grid-row: 15 / 25; /* Занимает с 15 по 25 строку */
+}
+
+/* Стили для всех изображений в галерее */
+.gallery-image {
+  width: 100%; /* Ширина на 100% от ячейки грида */
+  height: 100%; /* Высота на 100% от ячейки грида */
+  object-fit: cover; /* Масштабирование с сохранением пропорций, обрезая лишнее */
+  display: block; /* Убираем лишние отступы под изображением */
+}
+
+.gallery-section__title {
+  color: var(--text-color);
+  background-color: var(--title-decor);
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.gallery-section__images {
   display: grid;
-  grid-template-columns: 1fr min-content 1fr;
-  padding: 0 47px;
-  gap: 170px;
-  margin-top: 152px;
-  margin-bottom: 82px;
+  grid-template-columns: repeat(6, 1fr);
+  /* Увеличена высота строк для лучшего вида */
+  grid-template-rows: repeat(25, 20px);
+  gap: 25px;
 }
 
-/* Меню в подвале */
-
-.footer__menu{
-  display: flex;
-  min-width: 64px;
-  min-width: 164px;
-  text-align: center;
-  margin: 4px 0 0 12px;
+/* Первое изображение (Закат) — на всю ширину */
+.gallery-row:nth-child(1) {
+  display: contents;
 }
 
-.footer__menu-list{
-  list-style: none;
+.gallery-row:nth-child(1) .gallery-image {
+  grid-column: 1 / 5;
+  grid-row: 1 / 7;
 }
 
-/* Список иконок соцсетей */
-
-.footer__social-list{
-  display: flex;
-  list-style: none;
-  gap: 48px;
-  margin-top: 3px;
+/* Средний ряд — три картинки разного размера */
+.gallery-row--middle {
+  display: contents;
 }
 
-/* Ссылки в меню футера */
-
-.footer__menu-link{
-  list-style: circle;
+/* Кассета: половина+ */
+.gallery-row--middle .gallery-image:nth-child(1) {
+  grid-column: 1 / 3 ;
+  grid-row:  7 / 25;
 }
 
-.footer__menu-link_active{
-  text-decoration: none;
+/* Книги: узкое в центре */
+.gallery-row--middle .gallery-image:nth-child(2) {
+  grid-column: 3 / 5 ;
+  grid-row: 7 / 15;
 }
 
-.address__margin{
-  margin-top: 5px;
-  margin-left: 2px;
+/* Мороженое */
+.gallery-row--middle .gallery-image:nth-child(3) {
+  grid-column: 5 / 7;
+  grid-row: 1 / 15 ;
+}
+
+/* Третий ряд (улица) — на всю ширину */
+.gallery-row:nth-child(3) {
+  display: contents;
+}
+
+.gallery-row:nth-child(3) .gallery-image {
+  grid-column: 3 / 7;
+  grid-row: 15 / 25;
+}
+
+/* Стили для всех изображений в галерее */
+.gallery-image {
+  width: 100%;
+  height: 100%;
+  /* Масштабирование с сохранением пропорций, обрезая лишнее */
+  object-fit: cover;
+  display: block;
+}
+
+/* ========================================================================== */
+/* Стили для подвала (футера) */
+/* ========================================================================== */
+.footer {
+    position: relative; /* Относительное позиционирование для декоративных элементов */
+    background-color: var(--section-background); /* Цвет фона */
+    padding: 64px 0; /* Внутренние отступы */
+    display: flex; /* Включаем Flexbox */
+    justify-content: center; /* Центрирование по горизонтали */
+    align-items: center; /* Центрирование по вертикали */
+    min-height: 650px; /* Минимальная высота футера */
+}
+
+.footer__title {
+    color: var(--accent-pink);
+    font-family: var(--font-primary);
+    font-size: clamp(48px, 15vw, 157px); /* Адаптивний розмір шрифту */
+    font-weight: bold;
+    line-height: 83%;
+    text-shadow: 4px 4px 0 var(--header-title-shadow);
+    text-transform: lowercase;
 }
 
 
+/* ========================================================================== */
+/* Медиа-запросы для адаптивной верстки */
+/* ========================================================================== */
+
+/* Стили для экранов с максимальной шириной 768px (планшеты) */
+@media (max-width: 768px) {
+    /* Адаптивные стили для шапки на планшетах */
+    .header {
+        min-height: 980px; /* Увеличиваем минимальную высоту шапки */
+    }
+    .header__theme-menu {
+        justify-content: flex-end;
+    }
+    .header__theme-menu-list {
+        margin-top: 170px;
+        margin-right: 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .header__title {
+        align-self: flex-start;
+        margin: auto 0;
+        text-align: left;
+        word-spacing: 15px;
+    }
+    .header__description {
+        line-height: 23.4px;
+        max-width: 320px;
+        padding-right: 40px;
+        text-align: left;
+        margin-bottom: 160px;
+    }
+
+    .decorated-zone::before {
+        bottom: 10px;
+        left: 10px;
+    }
+    .decorated-zone::after {
+        top: 20px;
+        right: 20px;
+        width: 20px;
+    }
+    .header__rec {
+        top: 20px;
+        right: 25px;
+        font-weight: 100;
+    }
+
+    .content__section {
+        padding: 65px 20px 55px 20px;
+    }
+
+    /* Заголовок секції контенту */
+    .content__title {
+        max-width: 236px;
+    }
+
+    /* Підсекція контенту */
+    .content__subsection {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* Текст підсекції */
+    .subsection__text {
+        max-width: 470px;
+    }
 
 
+    /* Заголовок секції уваги */
+    .attention-section__title {
+        max-width: 230px;
+    }
+
+    /* Колонки в секції уваги */
+    .attention-section__columns {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .advice-item__text {
+        max-width: 470px;
+        padding-left: 5px;
+    }
+
+    .gallery-section__images {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(24, 10px); /* збільшена висота */
+        gap: 25px;
+    }
+
+    /* Перше зображення (Закат) — на всю ширину */
+    .gallery-row:nth-child(1) .gallery-image {
+        grid-column: 1 / 5;
+        grid-row: 1 / 7;
+    }
+
+
+    .gallery-row--middle .gallery-image:nth-child(1) {
+        grid-column: 1 / 3; /* кассета: половина+ */
+        grid-row: 7 / 24;
+    }
+
+    .gallery-row--middle .gallery-image:nth-child(2) {
+        grid-column: 3 / 5; /* книги: вузьке в центрі */
+        grid-row: 7 / 14;
+    }
+
+    .gallery-row--middle .gallery-image:nth-child(3) {
+        grid-column: 5 / 7; /* мороженое */
+        grid-row: 1 / 14;
+    }
+
+
+    .gallery-row:nth-child(3) .gallery-image {
+        grid-column: 3 / 7;
+        grid-row: 14 / 24;
+    }
+
+    .gallery-section {
+        padding-bottom: 25px;
+    }
+
+    .footer {
+        min-height: 900px;
+    }
+}
+
+/* Стили для экранов с максимальной шириной 376px (мобильные устройства) */
+@media (max-width: 376px) {
+    /* Адаптивные стили для шапки на мобильных устройствах */
+    .header {
+        padding: 10px; /* Уменьшаем внутренние отступы */
+        min-height: 650px; /* Устанавливаем минимальную высоту */
+    }
+    
+    .header__theme-menu-list {
+        margin-top: 65px;
+        margin-right: 0;
+    }
+
+    .header__title {
+        max-width: 350px;
+        font-size: 116px;
+        white-space: pre-line;
+    }
+    .header__description {
+        min-width: 315px;
+        padding-right: 40px;
+        margin: 0 0 60px 0;
+    }
+
+    .decorated-zone::after {
+        top: 10px;
+        left: 345px;
+    }
+    .header__rec {
+        top: 12px;
+        right: 20px;
+    }
+
+    .content__section {
+        padding: 40px 10px 30px 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    /* Заголовок секції контенту */
+    .content__title {
+        max-width: 355px;
+    }
+
+
+    /* Текст підсекції */
+    .subsection__text {
+        max-width: 350px;
+    }
+    
+
+    /* Заголовок секції уваги */
+    .attention-section__title {
+        max-width: 355px;
+    }
+
+    .attention-section { 
+        padding: 8px 10px 10px 10px;
+    }
+
+    .advice-item__text {
+        max-width: 470px;
+        padding-left: 0px;
+    }
+
+    .concentration-section {
+        display: flex;
+        flex-direction: column;
+        padding: 40px 10px 30px 10px;
+    }
+
+    .concentration-section__main-title {
+        max-width: 355px;
+    }
+
+    .concentration-section__subtitle {
+        margin-top: 12px;
+    }
+
+    .gallery-section {
+        padding: 0 10px;
+    }
+
+    .gallery-section__title {
+        margin-bottom: 10px;
+    }
+
+    .gallery-section__images {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(94, 5px); /* збільшена висота */
+        gap: 10px;
+    }
+
+    /* Перше зображення (Закат) — на всю ширину */
+    .gallery-row:nth-child(1) .gallery-image {
+        grid-column: 1 / 7;
+        grid-row: 1 / 11;
+    }
+
+
+    .gallery-row--middle .gallery-image:nth-child(1) {
+        grid-column: 1 / 7 ; /* кассета: половина+ */
+        grid-row: 35 / 52;
+    }
+
+    .gallery-row--middle .gallery-image:nth-child(2) {
+        grid-column:1 / 7 ; /* книги: вузьке в центрі */
+        grid-row: 52 / 76 ;
+    }
+
+    .gallery-row--middle .gallery-image:nth-child(3) {
+        grid-column: 1 / 7; /* мороженое */
+        grid-row: 11 / 35;
+    }
+
+
+    .gallery-row:nth-child(3) .gallery-image {
+        grid-column: 1 / 7 ;
+        grid-row: 76 / 92 ;
+    }
+
+    .footer {
+        min-height: 550px;
+    }  
+    .footer__title {
+    font-size: 116px; 
+   }
+}
