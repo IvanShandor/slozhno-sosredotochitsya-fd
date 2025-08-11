@@ -1,0 +1,18 @@
+/* Переопределение переменных для светлой темы,
+когда у <html> есть класс .theme-light */
+:root.theme-light {
+    --background-color: #fff1f7;                   /* Светло-серый фон */
+    --section-background: #FFF1F7;                  /* Цвет фона для секций */
+    --text-color: #353430;                         /* Темно-серый цвет для основного текста */
+    --accent-pink: #FFC2E6;                        /* Акцентный розовый для H1 */
+    --button-text-color: #353430;                  /* Темно-серый для кнопок */
+    --header-title-shadow: #FF8DCB;                /* Светло-серая тень (практически невидимая на светлом фоне) */
+    --background-image: url('../images/cover-image-light.png'); /* Фоновое изображение для светлой темы */
+    --main-text-color: #353430;                    /* Темно-серый для основного текста */
+    --content-section-title: #353430;              /* Чёрный для заголовков секций */
+    --accent-red: #FF8DCB;                         /* Акцентный розовый (остается для контраста) */
+    --decorated-zone-color: #353430;               /* Цвет декоративных рамок */
+    --min-height: 768px;                           /* Минимальная высота шапки для светлой темы */
+    --footer-min-height: 768px;
+    --rec-display: none;
+}
