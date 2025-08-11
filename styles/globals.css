@@ -11,11 +11,21 @@
   box-sizing: border-box;
 }
 
+* {
+    /* outline: 1px solid red; */ /* Закомментировано по умолчанию, можно раскомментировать для отладки */
+}
+
 /* Стили для элемента <body> */
 body {
     min-inline-size: 375px;  /* Минимальная ширина документа, предотвращает сжатие на мобильных устройствах */
     max-inline-size: 1440px; /* Максимальная ширина документа, ограничивает ширину на больших экранах */
     margin: 0 auto;           /* Центрирование body внутри окна браузера, если max-inline-size меньше ширины окна */
+    background-color: var(--background-color);
+    background-image: var(--background-image);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 /* Сброс внешних отступов (margin) для всех заголовков и параграфов.

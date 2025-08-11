@@ -11,7 +11,6 @@
     --accent-red: #ff0070;
 
     /* Цвета для фона и текста */
-    --background-color: #0D1B2A; /* Цвет фона по умолчанию */
     --text-color: #000028; /* Основной цвет текста (для заголовков на цветном фоне) */
     --main-text-color: #F1B2CE; /* Цвет основного текста на темном фоне */
     
@@ -26,14 +25,14 @@
     /* Шрифты */
     --font-primary: 'IBM Plex mono', monospace; /* Основной шрифт */
 
-    /* Изображения */
-    --background-image: url('../images/cover-image-dark.png'); /* Фоновое изображение для шапки */
-    
     /* Секции */
     --content-section-title: #ff0070; /* Цвет заголовков в секциях контента */
     --section-background: var(--text-color); /* Цвет фона для секций */
     
     /* Размеры */
-    --min-height: 720px; /* Минимальная высота шапки */
+    --min-height: 768px; /* Минимальная высота шапки */
+    --footer-min-height: 768px;
+    --footer-min-height-tablet: 900px;
+    --footer-min-height-mobile: 550px;
 }
 /* Дата добавления комментариев: 2025-08-07 */

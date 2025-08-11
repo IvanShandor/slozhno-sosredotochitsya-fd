@@ -28,7 +28,7 @@
 
 /* Стили для нижнего левого уголка */
 .decorated-zone::before {
-    bottom: 20px;
+    bottom: 22px;
     left: 20px;
     /* Рисуем только нижнюю и левую границы */
     border-width: 0 0 2px 2px;
@@ -36,7 +36,7 @@
 
 /* Стили для верхнего правого уголка */
 .decorated-zone::after {
-    top: 20px;
+    top: 15px;
     right: 20px;
     /* Рисуем только верхнюю и правую границы */
     border-width: 2px 2px 0 0;
@@ -91,12 +91,14 @@
     padding: 0;
     width: 70px;
     text-align: center;
+    text-transform: lowercase;
 }
 
 /* Стиль для активной кнопки темы */
 .header__theme-menu-button_active {
     /* Добавляем рамку для выделения */
     border: 1px solid var(--button-text-color);
+    padding: 3px 0;
 }
 
 /* Стили для кнопок при наведении */
@@ -130,7 +132,7 @@
     text-transform: lowercase;
     align-self: flex-start;
     margin-top: auto;
-    margin-bottom: 100px;
+    margin-bottom: 110px;
     text-align: left;
     white-space: nowrap;
 }
@@ -145,7 +147,7 @@
     font-weight: bold;
     line-height: 23.4px;
     max-width: 491px;
-    padding: 0;
+    padding: 0 0 3px 0;
     text-align: left;
     margin-bottom: 115px;
     margin-right: 20px;
@@ -160,7 +162,7 @@
 .header__rec {
   position: absolute; /* Абсолютное позиционирование относительно шапки */
   top: 22px; /* Отступ сверху */
-  right: 30px; /* Отступ справа */
+  right: 50px; /* Отступ справа */
   color: var(--accent-red); /* Цвет текста из переменной */
   font-size: 18px; /* Размер шрифта */
   display: var(--rec-display, flex); /* Включаем Flexbox для выравнивания */
@@ -168,7 +170,7 @@
   gap: 8px; /* Промежуток между текстом и точкой */
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3); /* Тень для текста */
   z-index: 10; /* Поверх остальных элементов */
-  font-style: "Regular"; /* Стиль шрифта */
+  font-style: normal; /* Стиль шрифта */
 }
 
 /* Стили для точки в элементе "REC" */
@@ -196,20 +198,23 @@
     display: grid;
     /* Сетка из двух колонок: первая занимает 1 часть, вторая 2 части */
     grid-template-columns: 1fr 2fr;
-    gap: 15px;
-    padding: 63px 20px;
+    gap: 12px;
+    padding: 58px 20px ;
 }
 
-/* Стили для заголовка секции */
-.content__title {
+/* Общие стили для заголовков секций */
+.section-title {
     font-family: "IBM Plex Mono", sans-serif;
     font-weight: 700;
-    font-style: Bold;
-    font-size: 17px;
     line-height: 23.4px;
     letter-spacing: 0.6px;
     color: var(--content-section-title);
     margin: 0;
+}
+
+/* Стили для заголовка секции */
+.content__title {
+    font-size: 17px;
 }
 
 /* Обертка для подсекций */
@@ -223,7 +228,7 @@
 .content__subsection {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 9px;
 }
 
 /* Стили для заголовка подсекции */
@@ -234,19 +239,20 @@
     font-weight: 700;
     font-size: 18px;
     line-height: 23.4px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     margin: 0;
     padding: 0;
+    /* Унаследуем стили от section-title */
+    /* font-family, font-weight, line-height, letter-spacing, color */
 }
 
 /* Стили для текста подсекции */
 .subsection__text {
     font-family: "IBM Plex Mono", sans-serif;
-    font-style: "Regular";
+    font-style: normal;
     font-size: 18px;
     line-height: 23.4px;
-    word-spacing: -1px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     color: var(--main-text-color);
     padding: 0;
     margin: 0;
@@ -274,7 +280,7 @@
 
 .attention-section {
     background-color: var(--section-background); /* Цвет фона секции */
-    padding: 8px 20px 10px 20px; /* Внутренние отступы */
+    padding: 21px 20px 10px 20px; /* Внутренние отступы */
     font-family: var(--font-primary, 'IBM Plex mono', monospace); /* Основной шрифт */
 }
 
@@ -283,22 +289,23 @@
   display: block;
   max-width: 315px;
   color: var(--content-section-title);
+  letter-spacing: 0px;
   font-size: 18px;
   font-weight: 700;
   line-height: 23.4px;
-  margin-bottom: 20px;
+  margin-bottom: 21px;
   text-align: left;
 }
 
-/* Стили для колонок в секции "Внимание" */
-.attention-section__columns {
+/* Стили для сетки в секции "Внимание" */
+.attention-section__grid {
   display: flex;
   justify-content: space-between;
   gap: 20px;
 }
 
-/* Отдельная колонка */
-.attention-section__column {
+/* Отдельный элемент в секции "Внимание" */
+.attention-section__item {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -314,6 +321,7 @@
   padding: 0;
   text-align: left;
   margin: 0;
+  letter-spacing: 0px;
 }
 
 /* Стили для текста в колонке */
@@ -333,7 +341,7 @@
 .concentration-section {
     background-color: var(--section-background);
     color: var(--main-text-color);
-    padding: 70px 20px 55px 20px;
+    padding: 70px 20px 77px 20px;
     font-family: var(--font-primary, 'IBM Plex Mono', monospace);
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -348,6 +356,7 @@
     font-weight: bold;
     max-width: 315px;
     margin: 0;
+    letter-spacing: 0;
 }
 
 .concentration-section__subtitle-wrapper {
@@ -389,7 +398,7 @@
   font-size: 18px;
   padding: 0;
   margin: 0;
-  margin-top: 20px;
+  margin-top: 21px;
 }
 
 .advice-item__text {
@@ -406,7 +415,7 @@
 
 .gallery-section {
     background-color: var(--section-background); /* Цвет фона секции */
-    padding: 0px 20px; /* Внутренние отступы */
+    padding: 0px 20px 58px ; /* Внутренние отступы */
     font-family: var(--font-primary, 'IBM Plex Mono', monospace); /* Основной шрифт */
 }
 
@@ -417,6 +426,7 @@
   font-size: 18px; /* Размер шрифта */
   font-weight: bold; /* Жирное начертание */
   margin-bottom: 20px; /* Отступ снизу */
+  letter-spacing: 0px;
 }
 
 /* Сетка для изображений в галерее */
@@ -427,42 +437,42 @@
   gap: 25px; /* Промежутки между ячейками сетки */
 }
 
-/* Контейнер для строки изображений (для логической группировки) */
-.gallery-row {
+/* Контейнер для группы изображений */
+.gallery__item-group {
   display: contents; /* Позволяет дочерним элементам быть прямыми потомками грида */
 }
 
 /* Расположение первого изображения (Закат) */
-.gallery-row:nth-child(1) .gallery-image {
+.gallery__item-group:nth-child(1) .gallery-image {
   grid-column: 1 / 5; /* Занимает с 1 по 4 колонку */
   grid-row: 1 / 7; /* Занимает с 1 по 7 строку */
 }
 
-/* Контейнер для среднего ряда изображений */
-.gallery-row--middle {
+/* Контейнер для средней группы изображений */
+.gallery__item-group_middle {
   display: contents;
 }
 
 /* Расположение изображения кассеты */
-.gallery-row--middle .gallery-image:nth-child(1) {
+.gallery__item-group_middle .gallery-image:nth-child(1) {
   grid-column: 1 / 3 ; /* Занимает с 1 по 2 колонку */
   grid-row:  7 / 25; /* Занимает с 7 по 25 строку */
 }
 
 /* Расположение изображения книг */
-.gallery-row--middle .gallery-image:nth-child(2) {
+.gallery__item-group_middle .gallery-image:nth-child(2) {
   grid-column: 3 / 5 ; /* Занимает с 3 по 4 колонку */
   grid-row: 7 / 15; /* Занимает с 7 по 15 строку */
 }
 
 /* Расположение изображения мороженого */
-.gallery-row--middle .gallery-image:nth-child(3) {
+.gallery__item-group_middle .gallery-image:nth-child(3) {
   grid-column: 5 / 7; /* Занимает с 5 по 6 колонку */
   grid-row: 1 / 15 ; /* Занимает с 1 по 15 строку */
 }
 
 /* Расположение третьего изображения (улица) */
-.gallery-row:nth-child(3) .gallery-image {
+.gallery__item-group:nth-child(3) .gallery-image {
   grid-column: 3 / 7; /* Занимает с 3 по 6 колонку */
   grid-row: 15 / 25; /* Занимает с 15 по 25 строку */
 }
@@ -475,72 +485,51 @@
   display: block; /* Убираем лишние отступы под изображением */
 }
 
-.gallery-section__title {
-  color: var(--text-color);
-  background-color: var(--title-decor);
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-.gallery-section__images {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  /* Увеличена высота строк для лучшего вида */
-  grid-template-rows: repeat(25, 20px);
-  gap: 25px;
-}
 
 /* Первое изображение (Закат) — на всю ширину */
-.gallery-row:nth-child(1) {
+.gallery__item-group:nth-child(1) {
   display: contents;
 }
 
-.gallery-row:nth-child(1) .gallery-image {
+.gallery__item-group:nth-child(1) .gallery-image {
   grid-column: 1 / 5;
   grid-row: 1 / 7;
 }
 
 /* Средний ряд — три картинки разного размера */
-.gallery-row--middle {
+.gallery__item-group_middle {
   display: contents;
 }
 
 /* Кассета: половина+ */
-.gallery-row--middle .gallery-image:nth-child(1) {
+.gallery__item-group_middle .gallery-image:nth-child(1) {
   grid-column: 1 / 3 ;
   grid-row:  7 / 25;
 }
 
 /* Книги: узкое в центре */
-.gallery-row--middle .gallery-image:nth-child(2) {
+.gallery__item-group_middle .gallery-image:nth-child(2) {
   grid-column: 3 / 5 ;
   grid-row: 7 / 15;
 }
 
 /* Мороженое */
-.gallery-row--middle .gallery-image:nth-child(3) {
+.gallery__item-group_middle .gallery-image:nth-child(3) {
   grid-column: 5 / 7;
   grid-row: 1 / 15 ;
 }
 
 /* Третий ряд (улица) — на всю ширину */
-.gallery-row:nth-child(3) {
+.gallery__item-group:nth-child(3) {
   display: contents;
 }
 
-.gallery-row:nth-child(3) .gallery-image {
+.gallery__item-group:nth-child(3) .gallery-image {
   grid-column: 3 / 7;
   grid-row: 15 / 25;
 }
 
 /* Стили для всех изображений в галерее */
-.gallery-image {
-  width: 100%;
-  height: 100%;
-  /* Масштабирование с сохранением пропорций, обрезая лишнее */
-  object-fit: cover;
-  display: block;
-}
 
 /* ========================================================================== */
 /* Стили для подвала (футера) */
@@ -548,11 +537,11 @@
 .footer {
     position: relative; /* Относительное позиционирование для декоративных элементов */
     background-color: var(--section-background); /* Цвет фона */
-    padding: 64px 0; /* Внутренние отступы */
     display: flex; /* Включаем Flexbox */
     justify-content: center; /* Центрирование по горизонтали */
     align-items: center; /* Центрирование по вертикали */
-    min-height: 650px; /* Минимальная высота футера */
+    padding: 64px 0; /* Внутренние отступы */
+    min-height: 99vh; /* Минимальная высота футера */
 }
 
 .footer__title {
@@ -561,8 +550,9 @@
     font-size: clamp(48px, 15vw, 157px); /* Адаптивний розмір шрифту */
     font-weight: bold;
     line-height: 83%;
-    text-shadow: 4px 4px 0 var(--header-title-shadow);
+    text-shadow: 4px 2px 0 var(--header-title-shadow);
     text-transform: lowercase;
+    margin-bottom: 5px;
 }
 
 
@@ -574,35 +564,41 @@
 @media (max-width: 768px) {
     /* Адаптивные стили для шапки на планшетах */
     .header {
-        min-height: 980px; /* Увеличиваем минимальную высоту шапки */
+        min-height: 1024px; /* Увеличиваем минимальную высоту шапки */
     }
     .header__theme-menu {
         justify-content: flex-end;
     }
     .header__theme-menu-list {
-        margin-top: 170px;
+        margin-top: 172px;
         margin-right: 20px;
         flex-direction: column;
-        gap: 15px;
+        gap: 18px;
+    }
+    /* Добавляем отступы для адаптивности */
+    .header__content {
+        padding: 0 20px 15px 0;
     }
 
     .header__title {
         align-self: flex-start;
         margin: auto 0;
         text-align: left;
-        word-spacing: 15px;
+        letter-spacing: 3px;
+        padding-bottom: 15px;
     }
     .header__description {
         line-height: 23.4px;
-        max-width: 320px;
-        padding-right: 40px;
+        max-width: 365px;
+        padding-right: 50px;
         text-align: left;
-        margin-bottom: 160px;
+        margin-bottom: 145px;
+        margin-right: 0;
     }
 
     .decorated-zone::before {
-        bottom: 10px;
-        left: 10px;
+        bottom: 20px;
+        left: 20px;
     }
     .decorated-zone::after {
         top: 20px;
@@ -610,13 +606,16 @@
         width: 20px;
     }
     .header__rec {
-        top: 20px;
-        right: 25px;
+        top: 23px;
+        right: 45px;
         font-weight: 100;
     }
 
     .content__section {
-        padding: 65px 20px 55px 20px;
+        padding: 60px 20px 58px 20px;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 19px;
     }
 
     /* Заголовок секції контенту */
@@ -626,6 +625,11 @@
 
     /* Підсекція контенту */
     .content__subsection {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .subsection__title {
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -643,49 +647,57 @@
     }
 
     /* Колонки в секції уваги */
-    .attention-section__columns {
+    .attention-section__grid {
         flex-direction: column;
         gap: 20px;
     }
 
     .advice-item__text {
         max-width: 470px;
-        padding-left: 5px;
+    }
+
+    .advice-item__title{
+        margin-top: 20px;
+    }
+
+    .concentration-section{
+        gap: 20px;
+        padding-bottom: 80px;
     }
 
     .gallery-section__images {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: repeat(24, 10px); /* збільшена висота */
+        grid-template-rows: repeat(28, 5px); /* збільшена висота */
         gap: 25px;
     }
 
     /* Перше зображення (Закат) — на всю ширину */
-    .gallery-row:nth-child(1) .gallery-image {
+    .gallery__item-group:nth-child(1) .gallery-image {
         grid-column: 1 / 5;
-        grid-row: 1 / 7;
+        grid-row: 1 / 8;
     }
 
 
-    .gallery-row--middle .gallery-image:nth-child(1) {
-        grid-column: 1 / 3; /* кассета: половина+ */
-        grid-row: 7 / 24;
-    }
-
-    .gallery-row--middle .gallery-image:nth-child(2) {
-        grid-column: 3 / 5; /* книги: вузьке в центрі */
-        grid-row: 7 / 14;
-    }
-
-    .gallery-row--middle .gallery-image:nth-child(3) {
-        grid-column: 5 / 7; /* мороженое */
-        grid-row: 1 / 14;
-    }
-
-
-    .gallery-row:nth-child(3) .gallery-image {
+    .gallery__item-group_middle .gallery-image:nth-child(1) {
         grid-column: 3 / 7;
-        grid-row: 14 / 24;
+        grid-row: 16 / 28;
+    }
+
+    .gallery__item-group_middle .gallery-image:nth-child(2) {
+        grid-column: 1 / 3; /* кассета: половина+ */
+        grid-row:8 / 28;
+    }
+
+    .gallery__item-group_middle .gallery-image:nth-child(3) {
+        grid-column: 3 / 5; /* книги: вузьке в центрі */
+        grid-row: 8 / 16;
+    }
+
+
+    .gallery__item-group:nth-child(3) .gallery-image {
+        grid-column: 5 / 7; /* мороженое */
+        grid-row: 1 / 16;
     }
 
     .gallery-section {
@@ -693,7 +705,7 @@
     }
 
     .footer {
-        min-height: 900px;
+        min-height: 155vh;
     }
 }
 
@@ -702,7 +714,10 @@
     /* Адаптивные стили для шапки на мобильных устройствах */
     .header {
         padding: 10px; /* Уменьшаем внутренние отступы */
-        min-height: 650px; /* Устанавливаем минимальную высоту */
+        min-height: 668px; /* Устанавливаем минимальную высоту */
+    }
+    .header__content {
+        padding: 0 ; /* Уменьшаем отступы для мобильных устройств */
     }
     
     .header__theme-menu-list {
@@ -712,26 +727,39 @@
 
     .header__title {
         max-width: 350px;
-        font-size: 116px;
+        font-size: clamp(116px, 6.04vw, 116px);
         white-space: pre-line;
+        letter-spacing: 1px;
     }
     .header__description {
         min-width: 315px;
         padding-right: 40px;
-        margin: 0 0 60px 0;
+        margin: 0 0 52px 0;
+        padding: 0 50px 5px 0;
     }
 
     .decorated-zone::after {
         top: 10px;
         left: 345px;
+    } 
+
+    .decorated-zone::before{
+        left:  10px;
+        bottom: 10px;
     }
+    
     .header__rec {
         top: 12px;
-        right: 20px;
+        right: 35px;
     }
 
+
     .content__section {
-        padding: 40px 10px 30px 10px;
+        padding: 40px 10px 41px 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    .subsection__title {
         display: flex;
         flex-direction: column;
     }
@@ -766,7 +794,7 @@
     .concentration-section {
         display: flex;
         flex-direction: column;
-        padding: 40px 10px 30px 10px;
+        padding: 40px 10px 51px 10px;
     }
 
     .concentration-section__main-title {
@@ -774,12 +802,13 @@
     }
 
     .concentration-section__subtitle {
-        margin-top: 12px;
+        margin-top: 2px;
     }
 
     .gallery-section {
-        padding: 0 10px;
+        padding: 0 10px 10px;
     }
+
 
     .gallery-section__title {
         margin-bottom: 10px;
@@ -791,39 +820,43 @@
         grid-template-rows: repeat(94, 5px); /* збільшена висота */
         gap: 10px;
     }
+    .gallery__item-group:nth-child(1) .gallery-image {
+        grid-column: 1 / 7;
+        grid-row: auto; /* Автоматический ряд */
+    }
 
     /* Перше зображення (Закат) — на всю ширину */
-    .gallery-row:nth-child(1) .gallery-image {
+    .gallery__item-group:nth-child(1) .gallery-image {
         grid-column: 1 / 7;
         grid-row: 1 / 11;
     }
 
 
-    .gallery-row--middle .gallery-image:nth-child(1) {
+    .gallery__item-group_middle .gallery-image:nth-child(1) {
         grid-column: 1 / 7 ; /* кассета: половина+ */
         grid-row: 35 / 52;
     }
 
-    .gallery-row--middle .gallery-image:nth-child(2) {
+    .gallery__item-group_middle .gallery-image:nth-child(2) {
         grid-column:1 / 7 ; /* книги: вузьке в центрі */
         grid-row: 52 / 76 ;
     }
 
-    .gallery-row--middle .gallery-image:nth-child(3) {
+    .gallery__item-group_middle .gallery-image:nth-child(3) {
         grid-column: 1 / 7; /* мороженое */
         grid-row: 11 / 35;
     }
 
 
-    .gallery-row:nth-child(3) .gallery-image {
+    .gallery__item-group:nth-child(3) .gallery-image {
         grid-column: 1 / 7 ;
-        grid-row: 76 / 92 ;
+        grid-row: 76 / 93 ;
     }
 
     .footer {
-        min-height: 550px;
-    }  
+        min-height: 100vh;
+    }
     .footer__title {
-    font-size: 116px; 
-   }
+    font-size: clamp(116px, 15vw, 116px);
+    }
 }
