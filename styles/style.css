@@ -859,4 +859,9 @@
     .footer__title {
     font-size: clamp(116px, 15vw, 116px);
     }
+@media (min-width: 377px) and (max-width: 420px) {
+    :root {
+        overflow-x: auto;
+    }
+}
 }
