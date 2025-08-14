@@ -1,4 +1,4 @@
-/* Общие стили для всей страницы */
+авто светлая тема не настроена/* Общие стили для всей страницы */
 .page {
     /* Максимальная ширина контейнера страницы, чтобы контент не растягивался слишком сильно на больших экранах */
     max-width: 1024px;
@@ -46,7 +46,7 @@
 .header {
     position: relative;
     max-width: 100%;
-    min-height: var(--min-height);
+    min-height: 768px;
     display: flex;
     flex-direction: column;
     padding: 20px 0;
@@ -98,6 +98,7 @@
 /* Стили для кнопок при наведении */
 .header__theme-menu-button:hover {
     outline: 1px solid var(--button-text-color); /* Добавляем контур при наведении */
+    opacity: 0.5;
     border: none; /* Убираем рамку, чтобы избежать двойных границ */
 }
 
@@ -126,11 +127,10 @@
     text-transform: lowercase;
     align-self: flex-start;
     margin-top: auto;
-    margin-bottom: 110px;
+    margin-bottom: 113px;
     text-align: left;
     white-space: normal;
-    overflow-wrap: break-word; /* Добавлено */
-    hyphens: auto; /* Добавлено */
+    letter-spacing: 2px;
 }
 
 /* Стили для описания в шапке */
@@ -145,10 +145,8 @@
     max-width: 491px;
     padding: 0 0 3px 0;
     text-align: left;
-    margin-bottom: 115px;
+    margin-bottom: 112px;
     margin-right: 20px;
-    overflow-wrap: break-word; /* Добавлено */
-    hyphens: auto; /* Добавлено */
 }
 
 
@@ -164,6 +162,7 @@
   color: var(--accent-red); /* Цвет текста из переменной */
   font-size: 18px; /* Размер шрифта */
   display: var(--rec-display, flex); /* Включаем Flexbox для выравнивания */
+  flex-direction: row-reverse; /* Меняем порядок элементов на обратный */
   align-items: center; /* Выравнивание по центру по вертикали */
   gap: 8px; /* Промежуток между текстом и точкой */
   text-shadow: 1px 2px 4px rgba(0, 0, 0, 1); /* Тень для текста */
@@ -171,8 +170,8 @@
   font-style: normal; /* Стиль шрифта */
 }
 
-/* Стили для точки в элементе "REC" */
-.header__rec-dot {
+.header__rec::before {
+  content: "";
   width: 9px; /* Ширина точки */
   height: 9px; /* Высота точки */
   min-width: 9px;
@@ -188,7 +187,6 @@
 
 /* Общие стили для основного контента */
 .content {
-    background-color: var(--section-background);
     color: var(--main-text-color);
     font-family: var(--font-primary, 'Courier New', monospace);
 }
@@ -256,8 +254,6 @@
     color: var(--main-text-color);
     padding: 0;
     margin: 0;
-    overflow-wrap: break-word; /* Добавлено */
-    hyphens: auto; /* Добавлено */
 }
 
 /* Стили для акцентного текста (ссылок) */
@@ -281,7 +277,6 @@
 /* ========================================================================== */
 
 .attention-section {
-    background-color: var(--section-background); /* Цвет фона секции */
     padding: 21px 20px 10px 20px; /* Внутренние отступы */
     font-family: var(--font-primary, 'IBM Plex mono', monospace); /* Основной шрифт */
 }
@@ -302,6 +297,7 @@
 /* Стили для сетки в секции "Внимание" */
 .attention-section__grid {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 20px;
 }
@@ -334,8 +330,6 @@
   padding-top: 10px;
   margin: 0;
   text-align: left;
-  overflow-wrap: break-word; /* Добавлено */
-  hyphens: auto; /* Добавлено */
 }
 /* Дата додавання коментарів: 2025-08-07 */
 
@@ -343,7 +337,6 @@
 /* Стили для секции концентрации */
 
 .concentration-section {
-    background-color: var(--section-background);
     color: var(--main-text-color);
     padding: 70px 20px 77px 20px;
     font-family: var(--font-primary, 'IBM Plex Mono', monospace);
@@ -410,8 +403,6 @@
   margin-bottom: 0;
   font-size: 18px;
   line-height: 1.3;
-  overflow-wrap: break-word; /* Добавлено */
-  hyphens: auto; /* Добавлено */
 }
 
 
@@ -420,7 +411,7 @@
 /* ========================================================================== */
 
 .gallery-section {
-    background-color: var(--section-background); /* Цвет фона секции */
+
     padding: 0px 20px 53px ; /* Внутренние отступы */
     font-family: var(--font-primary, 'IBM Plex Mono', monospace); /* Основной шрифт */
 }
@@ -439,8 +430,8 @@
 .gallery-section__images {
   display: grid; /* Включаем Grid-раскладку */
   grid-template-columns: repeat(6, 1fr); /* 6 колонок одинаковой ширины */
-  grid-template-rows: repeat(24, 20px); /* 25 строк высотой 20px */
-  gap: 25px; /* Промежутки между ячейками сетки */
+  grid-template-rows: repeat(63, 1px); /* 25 строк высотой 20px */
+  gap: 16px; /* Промежутки между ячейками сетки */
 }
 
 /* Контейнер для группы изображений */
@@ -448,40 +439,6 @@
   display: contents; /* Позволяет дочерним элементам быть прямыми потомками грида */
 }
 
-/* Расположение первого изображения (Закат) */
-.gallery__item-group:nth-child(1) .gallery-image {
-  grid-column: 1 / 5; /* Занимает с 1 по 4 колонку */
-  grid-row: 1 / 7; /* Занимает с 1 по 7 строку */
-}
-
-/* Контейнер для средней группы изображений */
-.gallery__item-group_middle {
-  display: contents;
-}
-
-/* Расположение изображения кассеты */
-.gallery__item-group_middle .gallery-image:nth-child(1) {
-  grid-column: 1 / 3 ; /* Занимает с 1 по 2 колонку */
-  grid-row:  7 / 25; /* Занимает с 7 по 25 строку */
-}
-
-/* Расположение изображения книг */
-.gallery__item-group_middle .gallery-image:nth-child(2) {
-  grid-column: 3 / 5 ; /* Занимает с 3 по 4 колонку */
-  grid-row: 7 / 15; /* Занимает с 7 по 15 строку */
-}
-
-/* Расположение изображения мороженого */
-.gallery__item-group_middle .gallery-image:nth-child(3) {
-  grid-column: 5 / 7; /* Занимает с 5 по 6 колонку */
-  grid-row: 1 / 15 ; /* Занимает с 1 по 15 строку */
-}
-
-/* Расположение третьего изображения (улица) */
-.gallery__item-group:nth-child(3) .gallery-image {
-  grid-column: 3 / 7; /* Занимает с 3 по 6 колонку */
-  grid-row: 15 / 25; /* Занимает с 15 по 25 строку */
-}
 
 /* Стили для всех изображений в галерее */
 .gallery-image {
@@ -499,7 +456,7 @@
 
 .gallery__item-group:nth-child(1) .gallery-image {
   grid-column: 1 / 5;
-  grid-row: 1 / 7;
+  grid-row: 1 / 17;
 }
 
 /* Средний ряд — три картинки разного размера */
@@ -510,19 +467,19 @@
 /* Кассета: половина+ */
 .gallery__item-group_middle .gallery-image:nth-child(1) {
   grid-column: 1 / 3 ;
-  grid-row:  7 / 25;
+  grid-row:  17 / 64;
 }
 
 /* Книги: узкое в центре */
 .gallery__item-group_middle .gallery-image:nth-child(2) {
   grid-column: 3 / 5 ;
-  grid-row: 7 / 15;
+  grid-row: 17 / 37 ;
 }
 
 /* Мороженое */
 .gallery__item-group_middle .gallery-image:nth-child(3) {
   grid-column: 5 / 7;
-  grid-row: 1 / 15 ;
+  grid-row: 1 / 37 ;
 }
 
 /* Третий ряд (улица) — на всю ширину */
@@ -532,7 +489,7 @@
 
 .gallery__item-group:nth-child(3) .gallery-image {
   grid-column: 3 / 7;
-  grid-row: 15 / 25;
+  grid-row: 37 / 64 ;
 }
 
 /* Стили для всех изображений в галерее */
@@ -546,7 +503,7 @@
     justify-content: center; /* Центрирование по горизонтали */
     align-items: center; /* Центрирование по вертикали */
     padding: 64px 0; /* Внутренние отступы */
-    min-height: 100vh; /* Минимальная высота футера */
+    min-height: 768px; /* Минимальная высота футера */
 }
 
 .footer__title {
@@ -578,7 +535,7 @@
         margin-top: 172px;
         margin-right: 20px;
         flex-direction: column;
-        gap: 18px;
+        gap: 16px;
     }
     /* Добавляем отступы для адаптивности */
     .header__content {
@@ -598,23 +555,15 @@
         text-align: left;
         margin-bottom: 145px;
         margin-right: 0;
+        max-width: 364px;
     }
 
-    .header__rec {
-        top: 23px;
-        right: 45px;
-        font-weight: 100;
-    }
 
     .content__section {
         padding: 60px 20px 58px 20px;
-        display: flex; /* Изменено с grid на flex */
-        flex-direction: column; /* Добавлено для колонки */
+        display: grid;
+        grid-template-columns: 1fr 2fr;
         gap: 19px;
-    }
-
-    /* Заголовок секції контенту */
-    .content__title {
     }
 
     /* Підсекція контенту */
@@ -629,13 +578,10 @@
         gap: 10px;
     }
 
-    /* Текст підсекції */
-    .subsection__text {
-    }
-
-
+   
     /* Заголовок секції уваги */
     .attention-section__title {
+        max-width: 236px;
     }
 
     /* Колонки в секції уваги */
@@ -644,57 +590,84 @@
         gap: 20px;
     }
 
-    .advice-item__text {
-    }
+
 
     .advice-item__title{
         margin-top: 20px;
     }
 
     .concentration-section{
-        display: flex; /* Изменено с grid на flex */
-        flex-direction: column; /* Добавлено для колонки */
         gap: 20px;
         padding-bottom: 80px;
     }
 
     .gallery-section__images {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: repeat(28, 5px); /* збільшена висота */
-        gap: 25px;
-    }
+  display: grid; /* Включаем Grid-раскладку */
+  grid-template-columns: repeat(6, 1fr); /* 6 колонок одинаковой ширины */
+  grid-template-rows: repeat(40, 1px); /* 25 строк высотой 20px */
+  gap: 20px; /* Промежутки между ячейками сетки */
+}
 
-    /* Перше зображення (Закат) — на всю ширину */
-    .gallery__item-group:nth-child(1) .gallery-image {
-        grid-column: 1 / 5;
-        grid-row: 1 / 8;
-    }
-
-
-    .gallery__item-group_middle .gallery-image:nth-child(1) {
-        grid-column: 3 / 7;
-        grid-row: 16 / 28;
-    }
-
-    .gallery__item-group_middle .gallery-image:nth-child(2) {
-        grid-column: 1 / 3; /* кассета: половина+ */
-        grid-row:8 / 28;
-    }
-
-    .gallery__item-group_middle .gallery-image:nth-child(3) {
-        grid-column: 3 / 5; /* книги: вузьке в центрі */
-        grid-row: 8 / 16;
-    }
+/* Контейнер для группы изображений */
+.gallery__item-group {
+  display: contents; /* Позволяет дочерним элементам быть прямыми потомками грида */
+}
 
 
-    .gallery__item-group:nth-child(3) .gallery-image {
-        grid-column: 5 / 7; /* мороженое */
-        grid-row: 1 / 16;
-    }
+/* Стили для всех изображений в галерее */
+.gallery-image {
+  width: 100%; /* Ширина на 100% от ячейки грида */
+  height: 100%; /* Высота на 100% от ячейки грида */
+  object-fit: cover; /* Масштабирование с сохранением пропорций, обрезая лишнее */
+  display: block; /* Убираем лишние отступы под изображением */
+}
+
+
+/* Первое изображение (Закат) — на всю ширину */
+.gallery__item-group:nth-child(1) {
+  display: contents;
+}
+
+.gallery__item-group:nth-child(1) .gallery-image {
+  grid-column: 1 / 5;
+  grid-row: 1 / 11;
+}
+
+/* Средний ряд — три картинки разного размера */
+.gallery__item-group_middle {
+  display: contents;
+}
+
+/* Кассета: половина+ */
+.gallery__item-group_middle .gallery-image:nth-child(1) {
+  grid-column: 1 / 3 ;
+  grid-row:  11 / 39;
+}
+
+/* Книги: узкое в центре */
+.gallery__item-group_middle .gallery-image:nth-child(2) {
+  grid-column: 3 / 5 ;
+  grid-row: 11 / 23 ;
+}
+
+/* Мороженое */
+.gallery__item-group_middle .gallery-image:nth-child(3) {
+  grid-column: 5 / 7;
+  grid-row: 1 / 23 ;
+}
+
+/* Третий ряд (улица) — на всю ширину */
+.gallery__item-group:nth-child(3) {
+  display: contents;
+}
+
+.gallery__item-group:nth-child(3) .gallery-image {
+  grid-column: 3 / 7;
+  grid-row: 23 / 39 ;
+}
 
     .gallery-section {
-        padding-bottom: 25px;
+        padding-bottom: 20px;
     }
 
     .footer {
@@ -706,8 +679,8 @@
 @media (max-width: 376px) {
     /* Адаптивные стили для шапки на мобильных устройствах */
     .header {
-        padding: 10px; /* Уменьшаем внутренние отступы */
-        min-height: 668px; /* Устанавливаем минимальную высоту */
+        padding: 10px 10px 10px 10px; /* Уменьшаем внутренние отступы */
+        min-height: 100vh; /* Устанавливаем минимальную высоту */
     }
     .header__content {
         padding: 0 ; /* Уменьшаем отступы для мобильных устройств */
@@ -716,36 +689,42 @@
     .header__theme-menu-list {
         margin-top: 65px;
         margin-right: 0;
+        gap: 17px;
     }
 
     .header__title {
         font-size: clamp(116px, 6.04vw, 116px);
-        white-space: normal; /* Изменено с pre-line на normal */
+        white-space: pre-line;
+        letter-spacing: 0;
     }
     .header__description {
         padding-right: 40px;
-        margin: 0 0 52px 0;
-        padding: 0 20px 5px 0;
+        margin: 0 0 62px 0;
+        padding: 0 40px 5px 0;
+        max-width: 355px;
     }
 
-    .decorated-zone::after {
-        top: 10px;
-        right: 10px;
-    }
-
-    .decorated-zone::before{
-        left:  10px;
-        bottom: 10px;
-    }
-    
     .header__rec {
-        top: 12px;
-        right: 35px;
+    top: 12px; /* Отступ сверху */
+    right: 20px; /* Отступ справа */
     }
+
+    .decorated-zone::before {
+    bottom: 22px;
+    left: 10px;
+   
+}
+
+/* Стили для верхнего правого уголка */
+.decorated-zone::after {
+    top: 10px;
+    right: 10px;
+    
+}    
 
 
     .content__section {
-        padding: 40px 10px 41px 10px;
+        padding: 28px 10px 41px 10px;
         display: flex;
         flex-direction: column;
     }
@@ -754,19 +733,9 @@
         flex-direction: column;
     }
 
-
-    /* Заголовок секції контенту */
-    .content__title {
-    }
-
-
-    /* Текст підсекції */
-    .subsection__text {
-    }
-    
-
     /* Заголовок секції уваги */
     .attention-section__title {
+        max-width: 355px;
     }
 
     .attention-section { 
@@ -792,7 +761,7 @@
     }
 
     .gallery-section {
-        padding: 0 10px 10px;
+        padding: 0 10px ;
     }
 
 
@@ -803,40 +772,37 @@
     .gallery-section__images {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: repeat(94, 5px); /* збільшена висота */
+        grid-template-rows: repeat(118, 2px); /* збільшена висота */
         gap: 10px;
     }
-    .gallery__item-group:nth-child(1) .gallery-image {
-        grid-column: 1 / 7;
-        grid-row: auto; /* Автоматический ряд */
-    }
+    
 
     /* Перше зображення (Закат) — на всю ширину */
     .gallery__item-group:nth-child(1) .gallery-image {
         grid-column: 1 / 7;
-        grid-row: 1 / 11;
+        grid-row: 1 / 14;
     }
 
 
     .gallery__item-group_middle .gallery-image:nth-child(1) {
         grid-column: 1 / 7 ; /* кассета: половина+ */
-        grid-row: 35 / 52;
+        grid-row: 44 / 65 ;
     }
 
     .gallery__item-group_middle .gallery-image:nth-child(2) {
         grid-column:1 / 7 ; /* книги: вузьке в центрі */
-        grid-row: 52 / 76 ;
+        grid-row: 65 / 95 ;
     }
 
     .gallery__item-group_middle .gallery-image:nth-child(3) {
         grid-column: 1 / 7; /* мороженое */
-        grid-row: 11 / 35;
+        grid-row: 14 / 44 ;
     }
 
 
     .gallery__item-group:nth-child(3) .gallery-image {
         grid-column: 1 / 7 ;
-        grid-row: 76 / 93 ;
+        grid-row: 95 / 116 ;
     }
 
     .footer {
@@ -846,31 +812,10 @@
     font-size: clamp(116px, 15vw, 116px);
     }
 }
-
-@media (min-width: 376px) and (max-width: 420px) {
-  .scroll-container {
-    
-    white-space: nowrap; /* предотвращает перенос элементов */
-  }
-
-  .scroll-container > * {
-    display: inline-block; /* выстраивает элементы в линию */
-    vertical-align: top;
-  }
-}
-
-@media (min-width: 376px) and (max-width: 420px) {
-  :root {
-    overflow-x: hidden; /* вимикаємо горизонтальну прокрутку сторінки */
-  }
-
-  .scroll-container {
-    display: flex;
-    flex-wrap: wrap;  /* дозволяємо перенос */
-    gap: 10px;        /* відступи між елементами */
-  }
-
-  .scroll-container > * {
-    flex: 0 0 auto;   /* зберігаємо власну ширину елементів */
-  }
+@media (min-width: 377px) and (max-width: 420px) {
+    .concentration-section {
+        display: flex;
+        flex-direction: column;
+        padding: 40px 10px 51px 10px;
+    }
 }

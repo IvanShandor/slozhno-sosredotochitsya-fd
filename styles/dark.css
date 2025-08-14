@@ -22,7 +22,7 @@
  */
 @media (prefers-color-scheme: dark) {
   /* Эти переменные будут применены по умолчанию для пользователей с темной темой ОС */
-  :root {
+  :root:not(.theme-light) {
       --background-color: #000028;
       --text-color: #000028;
       --button-text-color: #FF0070;

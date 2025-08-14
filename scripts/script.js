@@ -1,9 +1,9 @@
 // Самовызывающаяся функция (IIFE) для инициализации темы при загрузке страницы.
 (function initTheme() {
-  // Получаем сохраненную тему из локального хранилища (localStorage).
   const theme = localStorage.getItem('theme');
-  // Если тема была сохранена, применяем её.
-  if (theme) {
+  if (theme === 'auto') {
+    document.documentElement.className = '';
+  } else if (theme) {
     setTheme(theme);
   }
 })();
@@ -44,12 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
  * @param {string} theme - Название темы (например, 'light', 'dark').
  */
 function setTheme(theme) {
-  // Полностью очищаем классы у элемента <html>, чтобы удалить предыдущую тему.
   document.documentElement.className = '';
-  // Добавляем новый класс темы к элементу <html>.
-  document.documentElement.classList.add(`theme-${theme}`);
-  // Сохраняем выбранную тему в локальное хранилище для последующих сессий.
-  localStorage.setItem('theme', theme);
+  if (theme === 'auto') {
+    localStorage.removeItem('theme'); // Удаляем сохраненную тему, чтобы браузер использовал системные настройки
+  } else {
+    document.documentElement.classList.add(`theme-${theme}`);
+    localStorage.setItem('theme', theme);
+  }
 }
 
 /**
